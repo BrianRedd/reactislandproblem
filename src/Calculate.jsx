@@ -35,7 +35,6 @@ const Calculate = props => {
   };
 
   const calculateIslands = () => {
-    console.log("thisGrid:", grid);
     if (!grid || !grid.length) {
       setNumberOfIslands(0);
     }
@@ -58,7 +57,7 @@ const Calculate = props => {
       ) : (
         <button onClick={createGrid}>New Grid</button>
       )}
-      {numberOfIslands > 0 && <div>{numberOfIslands}</div>}
+      {numberOfIslands > 0 && <div>Number of Islands: {numberOfIslands}</div>}
     </div>
   );
 };
