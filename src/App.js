@@ -4,8 +4,7 @@ import Grid from "./Grid";
 import Calculate from "./Calculate";
 
 function App() {
-  const length = 5;
-
+  const [length, setLength] = useState(5);
   const [grid, setGrid] = useState(null);
   const [visited, setVisited] = useState(null);
 
@@ -29,6 +28,19 @@ function App() {
   return (
     <div className="App">
       <h1>Island Problem</h1>
+      <div style={{ margin: "5px" }}>
+        <span style={{ margin: "5px" }}>Number of Squares:</span>
+        <select
+          onChange={e => {
+            setLength(e.target.value);
+          }}
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={15}>15</option>
+          <option value={20}>20</option>
+        </select>
+      </div>
       {grid && (
         <React.Fragment>
           <Grid grid={grid} />
