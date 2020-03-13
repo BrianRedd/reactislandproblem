@@ -12,6 +12,15 @@ code {
     monospace;
 }
 
+header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.grid-block {
+  margin: 10px;
+}
+
 .square {
   height: 20px;
   width: 20px;

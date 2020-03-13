@@ -1,5 +1,12 @@
+/** @module Calculate */
+
 import React, { useState, useEffect } from "react";
 
+/**
+ * @function Calculate
+ * @description Component with logic for determining number of islands
+ * @param {Object} props 
+ */
 const Calculate = props => {
   const { grid, visited, createGrid } = props;
 
@@ -15,6 +22,13 @@ const Calculate = props => {
     setNumberOfIslands(totalVisited);
   }, [visited]);
 
+  /**
+   * @function dfs
+   * @description deep field search recursive helper function
+   * @param {Number} i coordinate
+   * @param {Number} j coordinate
+   * @returns {Number} 1 (new island) or 0 (water or visited land)
+   */
   const dfs = (i, j) => {
     if (
       i < 0 ||
@@ -34,6 +48,11 @@ const Calculate = props => {
     return 1;
   };
 
+  /**
+   * @function calculateIslands
+   * @description iterates through grid; upon encountering land, it calls dfs() to
+   * isolate extent of discovered island (so it is only counted once), then increments island count
+   */
   const calculateIslands = () => {
     if (!grid || !grid.length) {
       setNumberOfIslands(0);
@@ -55,7 +74,7 @@ const Calculate = props => {
       {!numberOfIslands ? (
         <button onClick={calculateIslands}>Calculate</button>
       ) : (
-        <button onClick={createGrid}>New Grid</button>
+        <button onClick={() => createGrid()}>New Grid</button>
       )}
       {numberOfIslands > 0 && <div>Number of Islands: {numberOfIslands}</div>}
     </div>
