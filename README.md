@@ -6,7 +6,7 @@ Author: R. Brian Redd <www.rbrianredd.com>
 
 Given an X by X grid where each square contains a `1` (land) or `0` water, determine how many islands exist.
 
-An island is defined as any number of contiguous land squares that are connected orthogonally adjacent (up/down/left/right, but not diagonally)
+An island is defined as any number of contiguous land squares that are connected orthogonally adjacent (up/down/left/right, but not diagonally).
 
 Example:
 ```

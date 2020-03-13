@@ -6,17 +6,22 @@ import React, { useState, useEffect } from "react";
  * @function Calculate
  * @description Component with logic for determining number of islands
  * @param {Object} props 
+ * @returns {React.Component}
  */
 const Calculate = props => {
   const { grid, visited, createGrid } = props;
 
   const [numberOfIslands, setNumberOfIslands] = useState(0);
 
+  /**
+   * @function useEffect
+   * @description useEffect to generate empty "visited" array
+   */
   useEffect(() => {
     let totalVisited = 0;
-    for (let i = 0; i < visited.length; i += 1) {
-      for (let j = 0; j < visited[i].length; j += 1) {
-        totalVisited += visited[i][j];
+    for (let x = 0; x < visited.length; x += 1) {
+      for (let y = 0; y < visited[x].length; y += 1) {
+        totalVisited += visited[x][y];
       }
     }
     setNumberOfIslands(totalVisited);
@@ -25,26 +30,26 @@ const Calculate = props => {
   /**
    * @function dfs
    * @description deep field search recursive helper function
-   * @param {Number} i coordinate
-   * @param {Number} j coordinate
+   * @param {Number} x coordinate
+   * @param {Number} y coordinate
    * @returns {Number} 1 (new island) or 0 (water or visited land)
    */
-  const dfs = (i, j) => {
+  const dfs = (x, y) => {
     if (
-      i < 0 ||
-      i >= grid.length ||
-      j < 0 ||
-      j >= grid[i].length ||
-      grid[i][j] === 0 ||
-      visited[i][j] === 1
+      x < 0 ||
+      x >= grid.length ||
+      y < 0 ||
+      y >= grid[x].length ||
+      grid[x][y] === 0 ||
+      visited[x][y] === 1
     ) {
       return 0;
     }
-    visited[i][j] = 1;
-    dfs(i + 1, j);
-    dfs(i - 1, j);
-    dfs(i, j + 1);
-    dfs(i, j - 1);
+    visited[x][y] = 1;
+    dfs(x + 1, y);
+    dfs(x - 1, y);
+    dfs(x, y + 1);
+    dfs(x, y - 1);
     return 1;
   };
 
@@ -58,10 +63,10 @@ const Calculate = props => {
       setNumberOfIslands(0);
     }
     let islands = 0;
-    for (let i = 0; i < grid.length; i += 1) {
-      for (let j = 0; j < grid[i].length; j += 1) {
-        if (grid[i][j] === 1) {
-          islands += dfs(i, j);
+    for (let x = 0; x < grid.length; x += 1) {
+      for (let y = 0; y < grid[x].length; y += 1) {
+        if (grid[x][y] === 1) {
+          islands += dfs(x, y);
         }
       }
     }
